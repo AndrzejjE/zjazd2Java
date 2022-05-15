@@ -7,8 +7,8 @@ class Vehicle {
     private String type;
     private int distance;
 
-    public Vehicle(String type, int passengers, int fuelcap, double lkm, int distance) {
-        setVeh(type, passengers, fuelcap, lkm, distance);
+    public Vehicle(String type, int passengers, int fuelcap, double lkm) {
+        setVeh(type, passengers, fuelcap, lkm);
     }
     public Vehicle(){
     }
@@ -53,30 +53,30 @@ class Vehicle {
         this.distance = distance;
     }
 
-    public void setVeh(String type, int passengers, int fuelcap, double lkm, int distance) {
+    public void setVeh(String type, int passengers, int fuelcap, double lkm) {
         this.setPassengers(passengers);
         this.setFuelcap(fuelcap);
         this.setLkm(lkm);
         this.setType(type);
-        this.setDistance(distance);
     }
     public void range() {
         System.out.println(getType() + "przwozi " + getPassengers() + " osób na odległość do " + (int) (getFuelcap() / getLkm() * 100) + " kilometrów");
     }
-    public void need() {
-        System.out.println(getType() + " potrzebuje " + (float) ((getDistance() * getLkm()) / 100)+ " litrów paliwa.");
+    public void need(int distance) {
+        this.distance = distance;
+        System.out.println(getType() + " potrzebuje " + (float) ((distance * getLkm()) / 100)+ " litrów paliwa.");
     }
 
 }
 
 public class VehicleProg4 {
     public static void main(String[] args){
-        Vehicle miniVan = new Vehicle( "Minivan ", 7,70,10.7,355);
-        Vehicle sportsCar = new Vehicle("Auto sportowe ",2,74,17,355);
+        Vehicle miniVan = new Vehicle( "Minivan ", 7,70,10.7);
+        Vehicle sportsCar = new Vehicle("Auto sportowe ",2,74,17);
 
         miniVan.range();
         sportsCar.range();
-        miniVan.need();
-        sportsCar.need();
+        miniVan.need(355);
+        sportsCar.need(355);
     }
 }
